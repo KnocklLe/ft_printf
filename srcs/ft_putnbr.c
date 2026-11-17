@@ -6,13 +6,13 @@
 /*   By: edolemai <edolemai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 09:42:09 by edolemai          #+#    #+#             */
-/*   Updated: 2026/11/17 14:10:38 by edolemai         ###   ########.fr       */
+/*   Updated: 2026/11/17 16:56:27 by edolemai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_unsigned_putnbr(unsigned long nb)
+void	ft_putnbr(long nb)
 {
 	if (nb < 0)
 	{
