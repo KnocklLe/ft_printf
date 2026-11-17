@@ -6,20 +6,20 @@
 /*   By: edolemai <edolemai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 08:31:39 by edolemai          #+#    #+#             */
-/*   Updated: 2026/11/17 14:10:39 by edolemai         ###   ########.fr       */
+/*   Updated: 2026/11/17 18:59:01 by edolemai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_putstr(char *str)
+void	ft_putstr(char *str, int *count)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (str[i])
 	{
-		ft_putchar(str[i]);
+		ft_putchar(str[i], count);
 		i++;
 	}
 }

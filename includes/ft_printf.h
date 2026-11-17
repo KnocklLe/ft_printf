@@ -6,7 +6,7 @@
 /*   By: edolemai <edolemai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 07:38:01 by edolemai          #+#    #+#             */
-/*   Updated: 2026/11/17 17:29:48 by edolemai         ###   ########.fr       */
+/*   Updated: 2026/11/17 18:44:16 by edolemai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
+# include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
 int		ft_printf(const char *, ...);
-void	ft_putchar(char c);
-void	ft_putstr(char *str);
-void	ft_putnbr(long nb);
-void	ft_putnbrbase(unsigned long long nb, char *base);
+void	ft_putchar(char c, int *count);
+void	ft_putstr(char *str, int *count);
+void	ft_putnbr(long nb, int *count);
+void	ft_putnbrbase(unsigned long long nb, char *base, int *count);
 
 #endif

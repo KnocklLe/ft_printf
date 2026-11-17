@@ -6,13 +6,15 @@
 /*   By: edolemai <edolemai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 08:12:42 by edolemai          #+#    #+#             */
-/*   Updated: 2026/11/17 14:10:40 by edolemai         ###   ########.fr       */
+/*   Updated: 2026/11/17 18:55:19 by edolemai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_putchar(char c)
+void	ft_putchar(char c, int *count)
 {
+	(*count)++;
+	(void)count;
 	write(1, &c, 1);
 }

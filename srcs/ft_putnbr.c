@@ -6,20 +6,21 @@
 /*   By: edolemai <edolemai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 09:42:09 by edolemai          #+#    #+#             */
-/*   Updated: 2026/11/17 16:56:27 by edolemai         ###   ########.fr       */
+/*   Updated: 2026/11/17 18:15:00 by edolemai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_putnbr(long nb)
+void	ft_putnbr(long nb, int *count)
 {
+	(*count)++;
 	if (nb < 0)
 	{
-		ft_putchar('-');
+		ft_putchar('-', count);
 		nb = -nb;
 	}
 	if (nb > 9)
-		ft_putnbr(nb / 10);
-	ft_putchar(nb % 10 + '0');
+		ft_putnbr(nb / 10, count);
+	ft_putchar(nb % 10 + '0', count);
 }

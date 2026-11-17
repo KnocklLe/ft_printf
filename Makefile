@@ -15,7 +15,8 @@ RESET    = \033[0m
 SOURCES  = srcs/ft_putstr.c \
            srcs/ft_putnbr.c \
            srcs/ft_putchar.c \
-           srcs/ft_printf.c
+           srcs/ft_printf.c	\
+		   srcs/ft_putnbrbase.c
 
 OBJECTS  = $(SOURCES:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: edolemai <edolemai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 17:21:54 by edolemai          #+#    #+#             */
-/*   Updated: 2026/11/17 17:37:18 by edolemai         ###   ########.fr       */
+/*   Updated: 2026/11/17 18:59:43 by edolemai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ static int	ft_lengthbase(char *base)
 	return (len);
 }
 
-void	ft_putnbrbase(unsigned long long nb, char *base)
+void	ft_putnbrbase(unsigned long long nb, char *base, int *count)
 {
 	unsigned long long	lengthbase;
 
 	lengthbase = ft_lengthbase(base);
 	if (nb >= lengthbase)
-		ft_putnbrbase(nb / lengthbase, base);
-	ft_putchar(base[nb % lengthbase]);
+		ft_putnbrbase(nb / lengthbase, base, count);
+	ft_putchar(base[nb % lengthbase], count);
 }

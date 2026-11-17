@@ -6,7 +6,7 @@
 /*   By: edolemai <edolemai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 07:47:22 by edolemai          #+#    #+#             */
-/*   Updated: 2026/11/17 17:01:54 by edolemai         ###   ########.fr       */
+/*   Updated: 2026/11/17 18:59:41 by edolemai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int	ft_printf(const char *format, ...)
 {
 	int		i;
 	va_list	args;
+	int		count;
 
+	count = 0;
 	i = 0;
 	va_start(args, format);
 	while (format[i])
@@ -25,16 +27,30 @@ int	ft_printf(const char *format, ...)
 		{
 			i++;
 			if (format[i] == 'd' || format[i] == 'i')
-				ft_putnbr(va_arg(args, int));
+				ft_putnbr(va_arg(args, int), &count);
 			else if (format[i] == 's')
-				ft_putstr(va_arg(args, char *));
+				ft_putstr(va_arg(args, char *), &count);
 			else if (format[i] == 'c')
-				ft_putchar(va_arg(args, int));
+				ft_putchar(va_arg(args, int), &count);
+			else if (format[i] == 'x')
+				ft_putnbrbase(va_arg(args, unsigned int), "0123456789abcdef",
+					&count);
+			else if (format[i] == 'X')
+				ft_putnbrbase(va_arg(args, unsigned int), "0123456789ABCDEF",
+					&count);
+			else if (format[i] == '%')
+				ft_putchar('%', &count);
+			else if (format[i] == 'p')
+			{
+				ft_putstr("0x", &count);
+				ft_putnbrbase(va_arg(args, uintptr_t), "0123456789abcdef",
+					&count);
+			}
 		}
 		else
-			ft_putchar(format[i]);
+			ft_putchar(format[i], &count);
 		i++;
 	}
 	va_end(args);
-	return (0);
+	return (count);
 }
