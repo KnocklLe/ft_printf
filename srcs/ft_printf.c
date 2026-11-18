@@ -23,44 +23,32 @@ static void	ft_putptr(void *ptr, int *count)
 	}
 }
 
-static void	ft_convert(char c, int *count, va_list *args)
-{
-	if (c == 'd' || c == 'i')
-		ft_putnbr(va_arg(*args, int), count);
-	else if (c == 's')
-		ft_putstr(va_arg(*args, char *), count);
-	else if (c == 'c')
-		ft_putchar(va_arg(*args, int), count);
-	else if (c == 'x')
-		ft_putnbr_base(va_arg(*args, unsigned int), "0123456789abcdef",
-			count);
-	else if (c == 'X')
-		ft_putnbr_base(va_arg(*args, unsigned int), "0123456789ABCDEF",
-			count);
-	else if (c == 'p')
-		ft_putptr(va_arg(*args, void *), count);
-	else if (c == 'u')
-		ft_putnbr_unsigned(va_arg(*args, unsigned int), count);
-	else if (c == '%')
-		ft_putchar('%', count);
-	else
-	{
-		ft_putchar('%', count);
-		ft_putchar(c, count);
-	}
-}
-
 static void	ft_check(const char *format, int *i, int *count, va_list *args)
 {
-	if (format[*i] == '%' && format[*i + 1] == '\0')
-		*count = -1;
-	else if (format[*i] == '%')
-	{
-		(*i)++;
-		ft_convert(format[*i], count, args);
-	}
-	else
+	if (format[*i] != '%')
 		ft_putchar(format[*i], count);
+	else if (format[*i + 1] == 'd' || format[*i + 1] == 'i')
+		ft_putnbr(va_arg(*args, int), count);
+	else if (format[*i + 1] == 's')
+		ft_putstr(va_arg(*args, char *), count);
+	else if (format[*i + 1] == 'c')
+		ft_putchar(va_arg(*args, int), count);
+	else if (format[*i + 1] == 'x')
+		ft_putnbr_base(va_arg(*args, unsigned int), "0123456789abcdef", count);
+	else if (format[*i + 1] == 'X')
+		ft_putnbr_base(va_arg(*args, unsigned int), "0123456789ABCDEF", count);
+	else if (format[*i + 1] == 'p')
+		ft_putptr(va_arg(*args, void *), count);
+	else if (format[*i + 1] == 'u')
+		ft_putnbr_unsigned(va_arg(*args, unsigned int), count);
+	else
+	{
+		ft_putchar('%', count);
+		if (format[*i + 1] != '%')
+			ft_putchar(format[*i + 1], count);
+	}
+	if (format[*i] == '%')
+		(*i)++;
 	(*i)++;
 }
 
@@ -76,7 +64,12 @@ int	ft_printf(const char *format, ...)
 		return (-1);
 	va_start(args, format);
 	while (format[i] && count != -1)
-		ft_check(format, &i, &count, &args);
+	{
+		if (format[i] == '%' && format[i + 1] == '\0')
+			count = -1;
+		else
+			ft_check(format, &i, &count, &args);
+	}
 	va_end(args);
 	return (count);
 }

@@ -92,7 +92,7 @@ When a normal character is encountered, it is printed directly.
 
 When a `%` character is encountered, the next character is interpreted as a conversion specifier.
 
-The function `ft_check()` decides whether the current character is plain text or the start of a conversion, and `ft_convert()` identifies the specifier and calls the corresponding output function.
+The function `ft_check()` handles one step of the format string: it prints plain characters directly, or, after a `%`, identifies the specifier and calls the corresponding output function. It then moves the index past what it has just processed (one character for plain text, two for a conversion).
 
 Edge cases follow the behavior of the original `printf()` (glibc):
 
@@ -155,8 +155,7 @@ The project is divided into several helper functions:
 | `ft_putnbr_unsigned` | Prints an unsigned decimal number. |
 | `ft_putnbr_base` | Prints a number in a specified base. |
 | `ft_putptr` | Prints a pointer as `0x` + hexadecimal (`(nil)` for `NULL`). |
-| `ft_convert` | Calls the right output function for a conversion specifier. |
-| `ft_check` | Handles one character of the format string (text or `%`). |
+| `ft_check` | Handles one step of the format string (plain text or a `%` conversion). |
 | `ft_printf` | Parses the format string and handles variadic arguments. |
 
 This modular approach makes the code easier to understand, maintain and extend.
