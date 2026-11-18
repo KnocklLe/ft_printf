@@ -6,7 +6,7 @@
 /*   By: edolemai <edolemai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 07:38:01 by edolemai          #+#    #+#             */
-/*   Updated: 2026/11/18 07:42:06 by edolemai         ###   ########.fr       */
+/*   Updated: 2026/11/18 07:44:34 by edolemai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int		ft_printf(const char *, ...);
 void	ft_putchar(char c, int *count);
 void	ft_putstr(char *str, int *count);
 void	ft_putnbr(long nb, int *count);
-void	ft_putnbrbase(unsigned long long nb, char *base, int *count);
+void	ft_putnbrbase(long nb, char *base, int *count);
 
 #endif
