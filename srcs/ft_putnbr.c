@@ -6,7 +6,7 @@
 /*   By: edolemai <edolemai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 09:42:09 by edolemai          #+#    #+#             */
-/*   Updated: 2026/11/17 18:15:00 by edolemai         ###   ########.fr       */
+/*   Updated: 2026/11/18 07:49:08 by edolemai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_putnbr(long nb, int *count)
 {
-	(*count)++;
 	if (nb < 0)
 	{
 		ft_putchar('-', count);

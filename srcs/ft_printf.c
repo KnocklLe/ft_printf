@@ -6,7 +6,7 @@
 /*   By: edolemai <edolemai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 07:47:22 by edolemai          #+#    #+#             */
-/*   Updated: 2026/11/18 07:45:36 by edolemai         ###   ########.fr       */
+/*   Updated: 2026/11/18 07:49:45 by edolemai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_printf(const char *format, ...)
 				ft_putnbrbase(va_arg(args, uintptr_t), "0123456789abcdef",
 					&count);
 			}
-			else if (format[i] == "%u")
+			else if (format[i] == "u")
 				ft_usigned_putnbr(va_arg(args, unsigned long long),
 					"0123456789");
 		}
