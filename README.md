@@ -169,5 +169,3 @@ They helped with:
 - Understanding integer types such as `uintptr_t` and `uintmax_t`.
 - Reviewing implementation choices and identifying potential errors.
 - Structuring and documenting the project in this README.
-
-The implementation and understanding of the project remain the responsibility of the student.
