@@ -6,11 +6,23 @@
 /*   By: edolemai <edolemai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 07:47:22 by edolemai          #+#    #+#             */
-/*   Updated: 2026/11/18 07:49:45 by edolemai         ###   ########.fr       */
+/*   Updated: 2026/11/18 08:24:40 by edolemai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+
+static void	ft_putnbrbasecheck(void *ptr, int *count)
+{
+	if (!ptr)
+		ft_putstr("(nil)", count);
+	else if (ptr)
+	{
+		ft_putstr("0x", count);
+		ft_putnbrbase((uintptr_t)ptr,
+			"0123456789abcdef", count);
+	}
+}
 
 int	ft_printf(const char *format, ...)
 {
@@ -39,14 +51,10 @@ int	ft_printf(const char *format, ...)
 			else if (format[i] == '%')
 				ft_putchar('%', &count);
 			else if (format[i] == 'p')
-			{
-				ft_putstr("0x", &count);
-				ft_putnbrbase(va_arg(args, uintptr_t), "0123456789abcdef",
+				ft_putnbrbasecheck(va_arg(args, void *), &count);
+			else if (format[i] == 'u')
+				ft_unsigned_putnbr(va_arg(args, unsigned long long),
 					&count);
-			}
-			else if (format[i] == "u")
-				ft_usigned_putnbr(va_arg(args, unsigned long long),
-					"0123456789");
 		}
 		else
 			ft_putchar(format[i], &count);

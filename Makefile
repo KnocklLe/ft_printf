@@ -16,7 +16,8 @@ SOURCES  = srcs/ft_putstr.c \
            srcs/ft_putnbr.c \
            srcs/ft_putchar.c \
            srcs/ft_printf.c	\
-		   srcs/ft_putnbrbase.c
+		   srcs/ft_putnbrbase.c \
+		   srcs/ft_unsigned_putnbr.c
 
 OBJECTS  = $(SOURCES:.c=.o)
 
