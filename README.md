@@ -64,7 +64,7 @@ To use `ft_printf()` in your own C project, include the header:
 Compile your program with the library:
 
 ```bash
-cc -Wall -Wextra -Werror main.c -L. -lftprintf -o programme
+cc -Wall -Wextra -Werror -Iincludes main.c -L. -lftprintf -o programme
 ```
 
 Example:
@@ -92,7 +92,14 @@ When a normal character is encountered, it is printed directly.
 
 When a `%` character is encountered, the next character is interpreted as a conversion specifier.
 
-The function `ft_check()` handles the conversion by identifying the specifier and calling the corresponding output function.
+The function `ft_check()` decides whether the current character is plain text or the start of a conversion, and `ft_convert()` identifies the specifier and calls the corresponding output function.
+
+Edge cases follow the behavior of the original `printf()` (glibc):
+
+- An unknown specifier such as `%k` is printed as is (`%k`).
+- A lone `%` at the end of the format string makes `ft_printf()` return `-1`.
+- A `NULL` format string returns `-1`.
+- If `write()` fails (for example when the standard output is closed), `ft_printf()` returns `-1`.
 
 ### 2. Variadic arguments
 
@@ -105,6 +112,8 @@ The project uses the C standard library's variadic argument macros:
 The `va_list` structure allows `ft_printf()` to process a variable number of arguments.
 
 Each conversion retrieves its corresponding argument and sends it to the appropriate function.
+
+The `va_list` is passed to the helper functions **by pointer** (`va_list *`). The C standard states that if a function receives a `va_list` by value and calls `va_arg` on it, the caller's copy becomes indeterminate. Passing a pointer guarantees that every helper advances the same list, on every platform (on some systems, such as Windows or ARM, passing it by value makes every conversion read the first argument again).
 
 ### 3. Number conversion algorithm
 
@@ -140,11 +149,14 @@ The project is divided into several helper functions:
 
 | Function | Responsibility |
 |---|---|
-| `ft_putchar` | Prints one character and updates the counter. |
-| `ft_putstr` | Prints a string. |
+| `ft_putchar` | Prints one character and updates the counter (sets it to `-1` if `write()` fails). |
+| `ft_putstr` | Prints a string (`(null)` for a `NULL` pointer). |
 | `ft_putnbr` | Prints a signed decimal number. |
-| `ft_unsigned_putnbr` | Prints an unsigned decimal number. |
-| `ft_putnbrbase` | Prints a number in a specified base. |
+| `ft_putnbr_unsigned` | Prints an unsigned decimal number. |
+| `ft_putnbr_base` | Prints a number in a specified base. |
+| `ft_putptr` | Prints a pointer as `0x` + hexadecimal (`(nil)` for `NULL`). |
+| `ft_convert` | Calls the right output function for a conversion specifier. |
+| `ft_check` | Handles one character of the format string (text or `%`). |
 | `ft_printf` | Parses the format string and handles variadic arguments. |
 
 This modular approach makes the code easier to understand, maintain and extend.

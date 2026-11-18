@@ -15,15 +15,13 @@
 
 # include <stdarg.h>
 # include <stdint.h>
-# include <stdio.h>
-# include <stdlib.h>
 # include <unistd.h>
 
-void	ft_unsigned_putnbr(unsigned long long nb, int *count);
 int		ft_printf(const char *format, ...);
 void	ft_putchar(char c, int *count);
-char	*ft_putstr(const char *str, int *count);
+void	ft_putstr(const char *str, int *count);
 void	ft_putnbr(long nb, int *count);
-void	ft_putnbrbase(uintmax_t nb, const char *base, int *count);
+void	ft_putnbr_unsigned(unsigned long long nb, int *count);
+void	ft_putnbr_base(uintmax_t nb, const char *base, int *count);
 
 #endif

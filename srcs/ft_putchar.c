@@ -14,6 +14,12 @@
 
 void	ft_putchar(char c, int *count)
 {
+	if (*count == -1)
+		return ;
+	if (write(1, &c, 1) == -1)
+	{
+		*count = -1;
+		return ;
+	}
 	(*count)++;
-	write(1, &c, 1);
 }

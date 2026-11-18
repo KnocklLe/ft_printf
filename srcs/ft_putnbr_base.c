@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbrbase.c                                    :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edolemai <edolemai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-static int	ft_lengthbase(char *base)
+static int	ft_lengthbase(const char *base)
 {
 	int	len;
 
@@ -22,12 +22,12 @@ static int	ft_lengthbase(char *base)
 	return (len);
 }
 
-void	ft_putnbrbase(uintmax_t nb, const char *base, int *count)
+void	ft_putnbr_base(uintmax_t nb, const char *base, int *count)
 {
 	uintmax_t	lengthbase;
 
-	lengthbase = ft_lengthbase((char *)base);
+	lengthbase = ft_lengthbase(base);
 	if (nb >= lengthbase)
-		ft_putnbrbase(nb / lengthbase, (char *)base, count);
+		ft_putnbr_base(nb / lengthbase, base, count);
 	ft_putchar(base[nb % lengthbase], count);
 }

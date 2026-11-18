@@ -12,12 +12,12 @@ YELLOW   = \033[0;33m
 BLUE     = \033[0;34m
 RESET    = \033[0m
 
-SOURCES  = srcs/ft_putstr.c \
-           srcs/ft_putnbr.c \
+SOURCES  = srcs/ft_printf.c \
            srcs/ft_putchar.c \
-           srcs/ft_printf.c	\
-		   srcs/ft_putnbrbase.c \
-		   srcs/ft_unsigned_putnbr.c
+           srcs/ft_putstr.c \
+           srcs/ft_putnbr.c \
+           srcs/ft_putnbr_unsigned.c \
+           srcs/ft_putnbr_base.c
 
 OBJECTS  = $(SOURCES:.c=.o)
 
@@ -28,7 +28,7 @@ $(NAME): $(OBJECTS)
 	@ar rcs $@ $^
 	@printf "$(GREEN)Bibliothèque compilée avec succès !$(RESET)\n"
 
-%.o: %.c includes/printf.h
+%.o: %.c includes/ft_printf.h
 	@printf "$(YELLOW)Compilation de $<...$(RESET)\n"
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 

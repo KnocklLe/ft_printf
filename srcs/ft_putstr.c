@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-char	*ft_putstr(const char *str, int *count)
+void	ft_putstr(const char *str, int *count)
 {
 	int	i;
 
@@ -20,12 +20,11 @@ char	*ft_putstr(const char *str, int *count)
 	if (!str)
 	{
 		ft_putstr("(null)", count);
-		return (NULL);
+		return ;
 	}
 	while (str[i])
 	{
 		ft_putchar(str[i], count);
 		i++;
 	}
-	return (NULL);
 }

@@ -12,40 +12,52 @@
 
 #include "../includes/ft_printf.h"
 
-static void	ft_putnbrbasecheck(void *ptr, int *count)
+static void	ft_putptr(void *ptr, int *count)
 {
 	if (!ptr)
 		ft_putstr("(nil)", count);
 	else
 	{
 		ft_putstr("0x", count);
-		ft_putnbrbase((uintptr_t)ptr, "0123456789abcdef", count);
+		ft_putnbr_base((uintptr_t)ptr, "0123456789abcdef", count);
 	}
 }
 
-static void	ft_check(const char *format, int *i, int *count, va_list args)
+static void	ft_convert(char c, int *count, va_list *args)
 {
-	if (format[*i] == '%' && format[*i + 1])
+	if (c == 'd' || c == 'i')
+		ft_putnbr(va_arg(*args, int), count);
+	else if (c == 's')
+		ft_putstr(va_arg(*args, char *), count);
+	else if (c == 'c')
+		ft_putchar(va_arg(*args, int), count);
+	else if (c == 'x')
+		ft_putnbr_base(va_arg(*args, unsigned int), "0123456789abcdef",
+			count);
+	else if (c == 'X')
+		ft_putnbr_base(va_arg(*args, unsigned int), "0123456789ABCDEF",
+			count);
+	else if (c == 'p')
+		ft_putptr(va_arg(*args, void *), count);
+	else if (c == 'u')
+		ft_putnbr_unsigned(va_arg(*args, unsigned int), count);
+	else if (c == '%')
+		ft_putchar('%', count);
+	else
+	{
+		ft_putchar('%', count);
+		ft_putchar(c, count);
+	}
+}
+
+static void	ft_check(const char *format, int *i, int *count, va_list *args)
+{
+	if (format[*i] == '%' && format[*i + 1] == '\0')
+		*count = -1;
+	else if (format[*i] == '%')
 	{
 		(*i)++;
-		if (format[*i] == 'd' || format[*i] == 'i')
-			ft_putnbr(va_arg(args, int), count);
-		else if (format[*i] == 's')
-			ft_putstr(va_arg(args, char *), count);
-		else if (format[*i] == 'c')
-			ft_putchar(va_arg(args, int), count);
-		else if (format[*i] == 'x')
-			ft_putnbrbase(va_arg(args, unsigned int), "0123456789abcdef",
-				count);
-		else if (format[*i] == 'X')
-			ft_putnbrbase(va_arg(args, unsigned int), "0123456789ABCDEF",
-				count);
-		else if (format[*i] == '%')
-			ft_putchar('%', count);
-		else if (format[*i] == 'p')
-			ft_putnbrbasecheck(va_arg(args, void *), count);
-		else if (format[*i] == 'u')
-			ft_unsigned_putnbr(va_arg(args, unsigned int), count);
+		ft_convert(format[*i], count, args);
 	}
 	else
 		ft_putchar(format[*i], count);
@@ -60,13 +72,11 @@ int	ft_printf(const char *format, ...)
 
 	count = 0;
 	i = 0;
-	if (!format || (format[i] == '%' && format[i + 1] == '\0'))
+	if (!format)
 		return (-1);
 	va_start(args, format);
-	while (format[i])
-	{
-		ft_check(format, &i, &count, args);
-	}
+	while (format[i] && count != -1)
+		ft_check(format, &i, &count, &args);
 	va_end(args);
 	return (count);
 }

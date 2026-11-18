@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unsigned_putnbr.c                               :+:      :+:    :+:   */
+/*   ft_putnbr_unsigned.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edolemai <edolemai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,9 +12,9 @@
 
 #include "../includes/ft_printf.h"
 
-void	ft_unsigned_putnbr(unsigned long long nb, int *count)
+void	ft_putnbr_unsigned(unsigned long long nb, int *count)
 {
 	if (nb > 9)
-		ft_unsigned_putnbr(nb / 10, count);
+		ft_putnbr_unsigned(nb / 10, count);
 	ft_putchar(nb % 10 + '0', count);
 }

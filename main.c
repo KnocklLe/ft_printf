@@ -162,8 +162,8 @@ int	main(void)
 	printf("TAILLE 42       --> %d\n", count2);
 
 	/* Format vide */
-	count1 = printf("");
-	count2 = ft_printf("");
+	count1 = printf(" ");
+	count2 = ft_printf(" ");
 	printf("\nTEST ORIGINAL (vide) --> %d\n", count1);
 	printf("TEST 42 (vide)       --> %d\n", count2);
 
