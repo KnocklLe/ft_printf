@@ -25,30 +25,30 @@ static void	ft_putptr(void *ptr, int *count)
 
 static void	ft_check(const char *format, int *i, int *count, va_list *args)
 {
-	if (format[*i] != '%')
-		ft_putchar(format[*i], count);
-	else if (format[*i + 1] == 'd' || format[*i + 1] == 'i')
-		ft_putnbr(va_arg(*args, int), count);
-	else if (format[*i + 1] == 's')
-		ft_putstr(va_arg(*args, char *), count);
-	else if (format[*i + 1] == 'c')
-		ft_putchar(va_arg(*args, int), count);
-	else if (format[*i + 1] == 'x')
-		ft_putnbr_base(va_arg(*args, unsigned int), "0123456789abcdef", count);
-	else if (format[*i + 1] == 'X')
-		ft_putnbr_base(va_arg(*args, unsigned int), "0123456789ABCDEF", count);
-	else if (format[*i + 1] == 'p')
-		ft_putptr(va_arg(*args, void *), count);
-	else if (format[*i + 1] == 'u')
-		ft_putnbr_unsigned(va_arg(*args, unsigned int), count);
-	else
+	if (format[*i] == '%' && format[*i + 1])
 	{
-		ft_putchar('%', count);
-		if (format[*i + 1] != '%')
-			ft_putchar(format[*i + 1], count);
-	}
-	if (format[*i] == '%')
 		(*i)++;
+		if (format[*i] == 'd' || format[*i] == 'i')
+			ft_putnbr(va_arg(*args, int), count);
+		else if (format[*i] == 's')
+			ft_putstr(va_arg(*args, char *), count);
+		else if (format[*i] == 'c')
+			ft_putchar(va_arg(*args, int), count);
+		else if (format[*i] == 'x')
+			ft_putnbr_base(va_arg(*args, unsigned int), "0123456789abcdef",
+				count);
+		else if (format[*i] == 'X')
+			ft_putnbr_base(va_arg(*args, unsigned int), "0123456789ABCDEF",
+				count);
+		else if (format[*i] == '%')
+			ft_putchar('%', count);
+		else if (format[*i] == 'p')
+			ft_putptr(va_arg(*args, void *), count);
+		else if (format[*i] == 'u')
+			ft_putnbr_unsigned(va_arg(*args, unsigned int), count);
+	}
+	else
+		ft_putchar(format[*i], count);
 	(*i)++;
 }
 

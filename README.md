@@ -94,10 +94,10 @@ When a `%` character is encountered, the next character is interpreted as a conv
 
 The function `ft_check()` handles one step of the format string: it prints plain characters directly, or, after a `%`, identifies the specifier and calls the corresponding output function. It then moves the index past what it has just processed (one character for plain text, two for a conversion).
 
-Edge cases follow the behavior of the original `printf()` (glibc):
+Edge cases:
 
-- An unknown specifier such as `%k` is printed as is (`%k`).
-- A lone `%` at the end of the format string makes `ft_printf()` return `-1`.
+- An unknown specifier such as `%k` is undefined behavior in C and is not required by the subject: it is simply skipped (nothing is printed).
+- A lone `%` at the end of the format string makes `ft_printf()` return `-1`, like the original `printf()`.
 - A `NULL` format string returns `-1`.
 - If `write()` fails (for example when the standard output is closed), `ft_printf()` returns `-1`.
 
