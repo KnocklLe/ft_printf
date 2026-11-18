@@ -6,7 +6,7 @@
 /*   By: edolemai <edolemai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 08:31:39 by edolemai          #+#    #+#             */
-/*   Updated: 2026/11/18 10:42:46 by edolemai         ###   ########.fr       */
+/*   Updated: 2026/11/18 14:21:34 by edolemai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ char	*ft_putstr(const char *str, int *count)
 	{
 		ft_putstr("(null)", count);
 		count += 6;
-		return (str);
+		return (NULL);
 	}
 	while (str[i])
 	{
 		ft_putchar(str[i], count);
 		i++;
 	}
-	return (str);
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: edolemai <edolemai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 17:21:54 by edolemai          #+#    #+#             */
-/*   Updated: 2026/11/18 10:35:28 by edolemai         ###   ########.fr       */
+/*   Updated: 2026/11/18 14:22:07 by edolemai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	ft_putnbrbase(uintmax_t nb, const char *base, int *count)
 {
 	uintmax_t	lengthbase;
 
-	lengthbase = ft_lengthbase(base);
+	lengthbase = ft_lengthbase((char *)base);
 	if (nb >= lengthbase)
-		ft_putnbrbase(nb / lengthbase, base, count);
+		ft_putnbrbase(nb / lengthbase, (char *)base, count);
 	ft_putchar(base[nb % lengthbase], count);
 }
