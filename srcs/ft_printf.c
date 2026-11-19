@@ -6,7 +6,7 @@
 /*   By: edolemai <edolemai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 07:47:22 by edolemai          #+#    #+#             */
-/*   Updated: 2026/11/18 10:41:44 by edolemai         ###   ########.fr       */
+/*   Updated: 2026/11/19 17:17:16 by edolemai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,22 @@ static void	ft_putptr(void *ptr, int *count)
 	}
 }
 
-static void	ft_check(const char *format, int *i, int *count, va_list *args)
+static int	ft_checkletter(char c)
+{
+	if (c == 'd' || c == 'i' || c == 's' || c == 'c' || c == 'c' || c == 'x'
+		|| c == 'X' || c == '%' || c == 'p' || c == 'u')
+		return (1);
+	return (0);
+}
+
+static int	ft_check(const char *format, int *i, int *count, va_list *args)
 {
 	if (format[*i] == '%' && format[*i + 1])
 	{
 		(*i)++;
-		if (format[*i] == 'd' || format[*i] == 'i')
+		if (!ft_checkletter(format[*i]))
+			return (-1);
+		else if (format[*i] == 'd' || format[*i] == 'i')
 			ft_putnbr(va_arg(*args, int), count);
 		else if (format[*i] == 's')
 			ft_putstr(va_arg(*args, char *), count);
@@ -50,6 +60,7 @@ static void	ft_check(const char *format, int *i, int *count, va_list *args)
 	else
 		ft_putchar(format[*i], count);
 	(*i)++;
+	return (0);
 }
 
 int	ft_printf(const char *format, ...)
