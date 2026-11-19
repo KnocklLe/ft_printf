@@ -32,12 +32,6 @@ $(NAME): $(OBJECTS)
 	@printf "$(YELLOW)Compilation de $<...$(RESET)\n"
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-main: $(NAME) main.c
-	@printf "$(BLUE)====== TEST FT_PRINTF ======$(RESET)\n"
-	@$(CC) $(CFLAGS) $(INCLUDES) main.c -L. -lftprintf -o $(EXEC)
-	@printf "$(GREEN)Exécution du programme...$(RESET)\n"
-	@./$(EXEC)
-
 clean:
 	@printf "$(YELLOW)Suppression des fichiers objets...$(RESET)\n"
 	@rm -f $(OBJECTS)
@@ -48,4 +42,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re main
+.PHONY: all clean fclean re

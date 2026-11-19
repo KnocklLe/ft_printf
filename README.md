@@ -51,7 +51,6 @@ libftprintf.a
 | `make clean` | Removes object files. |
 | `make fclean` | Removes object files and the library. |
 | `make re` | Recompiles the project from scratch. |
-| `make main` | Compiles and executes the test program (`main.c`). |
 
 ### Usage
 
@@ -96,7 +95,6 @@ The function `ft_check()` handles one step of the format string: it prints plain
 
 Edge cases:
 
-- An unknown specifier such as `%k` is undefined behavior in C and is not required by the subject: it is simply skipped (nothing is printed).
 - A lone `%` at the end of the format string makes `ft_printf()` return `-1`, like the original `printf()`.
 - A `NULL` format string returns `-1`.
 - If `write()` fails (for example when the standard output is closed), `ft_printf()` returns `-1`.
@@ -178,5 +176,4 @@ They helped with:
 - Understanding variadic functions and the use of `va_list`.
 - Clarifying the behavior of the different `printf()` conversion specifiers.
 - Understanding integer types such as `uintptr_t` and `uintmax_t`.
-- Reviewing implementation choices and identifying potential errors.
 - Structuring and documenting the project in this README.
