@@ -6,7 +6,7 @@
 /*   By: edolemai <edolemai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 07:38:01 by edolemai          #+#    #+#             */
-/*   Updated: 2026/11/18 10:40:28 by edolemai         ###   ########.fr       */
+/*   Updated: 2026/11/23 12:14:45 by edolemai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include <stdint.h>
 # include <unistd.h>
 
-int		ft_printf(const char *format, ...);
+int		ft_printf(const char *format, ...)__attribute__((format(printf, 1,
+					2)));
 void	ft_putchar(char c, int *count);
 void	ft_putstr(const char *str, int *count);
 void	ft_putnbr(long nb, int *count);
